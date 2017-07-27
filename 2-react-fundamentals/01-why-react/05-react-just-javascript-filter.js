@@ -24,6 +24,8 @@ const musicData = [
     { artist: 'Justin Bieber', name: 'Purpose', sales: 554000 }
 ];
 
-const results = 'Replace this message with your code!';
+const results = musicData.filter(
+	music => (music.name.length >= 10) && (music.name.length <= 25)
+);
 
 console.log(results);
