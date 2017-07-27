@@ -27,6 +27,8 @@ const musicData = [
     { artist: 'Justin Bieber', name: 'Purpose', sales: 554000 }
 ];
 
-const popular = 'Replace this message with your code!';
+const popular = musicData.filter( music => music.sales > 1000000).map(
+	music => music.artist + ' is a great performer'
+);
 
 console.log(popular);
