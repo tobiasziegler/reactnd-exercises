@@ -25,6 +25,8 @@ const musicData = [
     { artist: 'Justin Bieber', name: 'Purpose', sales: 554000 }
 ];
 
-const albumSalesStrings = 'Replace this message with your code!';
+const albumSalesStrings = musicData.map(
+	music => music.name + ' by ' + music.artist + ' sold ' + music.sales + ' copies'
+);
 
 console.log(albumSalesStrings);
