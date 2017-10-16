@@ -28,3 +28,10 @@ const musicData = [
     { artist: 'Rihanna', name: 'Anti', sales: 603000 },
     { artist: 'Justin Bieber', name: 'Purpose', sales: 554000 }
 ];
+
+const totalAlbumSales = musicData.filter((album) => {
+    const albumString = album.artist + album.name
+    return albumString.length < 25
+}).reduce((accumulator, currentValue) => {
+  return accumulator + currentValue.sales;
+}, 0)
