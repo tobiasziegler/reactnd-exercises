@@ -18,3 +18,8 @@ const data = [
     { name: 'David', favoriteIceCreams: ['Vanilla', 'French Vanilla', 'Vanilla Bean', 'Strawberry'] },
     { name: 'Karl', favoriteIceCreams: ['Strawberry', 'Chocolate', 'Mint Chocolate Chip'] }
 ];
+
+const iceCreamTotals = data.reduce((accumulator, currentValue) => {
+    currentValue.favoriteIceCreams.map((flavor) => accumulator[flavor] ? accumulator[flavor] += 1 : accumulator[flavor] = 1)
+    return accumulator;
+}, {});
