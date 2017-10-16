@@ -22,3 +22,7 @@ const musicData = [
     { artist: 'Rihanna', name: 'Anti', sales: 603000 },
     { artist: 'Justin Bieber', name: 'Purpose', sales: 554000 }
 ];
+
+totalAlbumSales = musicData.reduce( (accumulator, currentValue) => {
+  return accumulator + currentValue.sales;
+}, 0);
