@@ -12,3 +12,13 @@
  * from passing in default values for any parameters!):
  * [{ flavor: 'Chocolate', count: 36 }, { flavor: 'Vanilla', count: 210 }];
 */
+
+function appReducer(state, action) {
+    switch (action.type) {
+        case 'DELETE_FLAVOR':
+            const newState = state.filter((obj) => obj.flavor !== action.flavor)
+            return newState
+        default:
+            return state
+    }
+}
