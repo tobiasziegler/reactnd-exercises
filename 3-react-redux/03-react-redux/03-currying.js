@@ -13,3 +13,9 @@
  * const response = houseBuilder(3)('blue');
  * console.log(response); // building a 3-story, blue house
 */
+
+function houseBuilder(floors) {
+    return function colorPicker(color) {
+        return `building a ${floors}-story, ${color} house`
+    }
+}
