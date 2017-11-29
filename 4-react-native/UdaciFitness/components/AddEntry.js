@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { View } from "react-native";
-import { getMetricMetaInfo } from "../utils/helpers";
-import UdaciSlider from "./UdaciSlider";
-import UdaciSteppers from "./UdaciSteppers";
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { getMetricMetaInfo } from '../utils/helpers';
+import UdaciSlider from './UdaciSlider';
+import UdaciSteppers from './UdaciSteppers';
 
 export default class AddEntry extends Component {
   state = {
@@ -55,7 +55,7 @@ export default class AddEntry extends Component {
           return (
             <View key={key}>
               {getIcon()}
-              {type === "slider" ? (
+              {type === 'slider' ? (
                 <UdaciSlider
                   value={value}
                   onChange={value => this.slide(key, value)}
