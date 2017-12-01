@@ -14,7 +14,7 @@ import { calculateDirection } from '../utils/helpers';
 export default class Live extends Component {
   state = {
     coords: null,
-    status: null,
+    status: 'undetermined',
     direction: ''
   };
 
@@ -34,7 +34,19 @@ export default class Live extends Component {
       });
   }
 
-  askPermission = () => {};
+  askPermission = () => {
+    Permissions.askAsync(Permissions.LOCATION)
+      .then(({ status }) => {
+        if (status === 'granted') {
+          return this.setLocation();
+        }
+
+        this.setState(() => ({ status }));
+      })
+      .catch(error =>
+        console.warn('Error asking Location permission: ', error)
+      );
+  };
 
   setLocation = () => {
     Location.watchPositionAsync(
@@ -46,6 +58,7 @@ export default class Live extends Component {
       ({ coords }) => {
         const newDirection = calculateDirection(coords.heading);
         const { direction } = this.state;
+
         this.setState(() => ({
           coords,
           status: 'granted',
@@ -90,16 +103,20 @@ export default class Live extends Component {
       <View style={styles.container}>
         <View style={styles.directionContainer}>
           <Text style={styles.header}>You're heading</Text>
-          <Text style={styles.direction}>North</Text>
+          <Text style={styles.direction}>{direction}</Text>
         </View>
         <View style={styles.metricContainer}>
           <View style={styles.metric}>
             <Text style={[styles.header, { color: white }]}>Altitude</Text>
-            <Text style={[styles.subHeader, { color: white }]}>{200} feet</Text>
+            <Text style={[styles.subHeader, { color: white }]}>
+              {Math.round(coords.altitude)} metres
+            </Text>
           </View>
           <View style={styles.metric}>
             <Text style={[styles.header, { color: white }]}>Speed</Text>
-            <Text style={[styles.subHeader, { color: white }]}>{300} MPH</Text>
+            <Text style={[styles.subHeader, { color: white }]}>
+              {coords.speed * 3.6} kph
+            </Text>
           </View>
         </View>
       </View>
